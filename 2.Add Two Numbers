@@ -1,0 +1,58 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        queue<int> p1,p2;
+        ListNode* H=NULL;
+        ListNode **node=&H;
+        while(l1!=NULL){
+            p1.push(l1->val);
+            l1=l1->next;
+        }
+        while(l2!=NULL){
+            p2.push(l2->val);
+            l2=l2->next;
+        }
+        int s=0,c=0,sum=0;
+        while(!p1.empty() && !p2.empty()){
+            s=p1.front()+p2.front()+c;
+            p1.pop();
+            p2.pop();
+            c=s/10;
+            s=s%10;
+            (*node)=new ListNode(s);
+            node=&((*node)->next);
+            
+        }
+        while(!p1.empty()){
+            s=p1.front()+c;
+            p1.pop();
+            c=s/10;
+            s=s%10;
+            (*node)=new ListNode(s);
+            node=&((*node)->next);
+        }
+          while(!p2.empty()){
+            s=p2.front()+c;
+            p2.pop();
+            c=s/10;
+            s=s%10;
+            (*node)=new ListNode(s);
+            node=&((*node)->next);
+        }
+        if(c!=0){
+           (*node)=new ListNode(c);
+            node=&((*node)->next); 
+        }
+        return H;
+    }
+};
