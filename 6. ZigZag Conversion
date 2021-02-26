@@ -1,0 +1,39 @@
+#include<bits/stdc++.h>
+class Solution {
+public:
+    string convert(string s, int numRows) {
+      int k;
+        if(numRows%2==0){
+           k=numRows/2;
+       }
+        else{
+           k=(numRows/2)+1;  
+        }
+        int n=s.length();
+        string v[numRows];
+        int cnt=0;
+        while(n!=cnt){
+            for(int i=0;i<numRows;i++){
+                if(cnt==n)
+                    break;
+                v[i]=v[i]+s[cnt];
+                cnt++;
+            }
+            if(cnt==n)
+                    break;
+            for(int i=numRows-2;i>0;i--){
+                if(cnt==n)
+                    break;
+                v[i]=v[i]+s[cnt];
+                cnt++;
+            }
+                
+        }
+        string str;
+        for(int i=0;i<numRows;i++){
+            str=str+v[i];
+           // cout<<v[i]<<endl;
+        }
+        return str;
+    }
+};
