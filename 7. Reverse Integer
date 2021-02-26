@@ -1,0 +1,18 @@
+typedef long long ll;
+class Solution {
+public:
+    int reverse(int x) {
+        ll c,s=0;
+        while(x!=0){
+           c=x%10;
+           x=x/10;
+           if (s > INT_MAX/10 || (s == INT_MAX / 10 && c > 7)) 
+               return 0;
+            if (s < INT_MIN/10 || (s == INT_MIN / 10 && c < -8)) 
+                return 0;
+           s=(s*10)+c;
+        }
+       
+        return (s);
+    }
+};
