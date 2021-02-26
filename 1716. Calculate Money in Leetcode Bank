@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int totalMoney(int n) {
+        int count=0;
+        int sum=0;
+        // if(n<=7){
+        //     sum=(n/2)*(2+(n-1));
+        //     return sum;
+        // }
+        int k=1,c=0;
+      //  cout<<endl;
+        while(c!=(n)){
+            c++;
+            count++;
+            if((c-1)%7==0){
+                count=k;
+                k++;
+                sum+=count;
+               // cout<<count<<" "<<sum<<" "<<"hi"<<endl;
+                continue;
+            }
+            sum+=count;
+           // cout<<count<<" "<<sum<<endl;
+            
+        }
+        return sum;
+    }
+};
