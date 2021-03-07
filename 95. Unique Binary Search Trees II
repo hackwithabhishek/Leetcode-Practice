@@ -1,0 +1,32 @@
+class Solution {
+public:
+    vector<TreeNode*> dp[9][9];
+    vector<TreeNode*> constructBST(int start,int end){
+        vector<TreeNode*> res;
+        if(start>end){
+            res.push_back(NULL);
+            return res;
+        }
+        if(dp[start][end].size()!=0){
+            return dp[start][end];
+        }
+        for(int i=start;i<=end;i++){
+            vector<TreeNode*> left=constructBST(start,i-1);
+            vector<TreeNode*> right=constructBST(i+1,end);
+            
+            for(TreeNode* l:left){
+                for(TreeNode* r:right){
+                    TreeNode* root=new TreeNode(i);
+                    root->left=l;
+                    root->right=r;
+                    res.push_back(root);
+                }
+            }
+            
+        }
+        return dp[start][end]=res;
+    }
+    vector<TreeNode*> generateTrees(int n) {
+       return constructBST(1,n);
+    }
+};
