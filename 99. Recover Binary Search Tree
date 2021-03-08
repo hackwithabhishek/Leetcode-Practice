@@ -1,0 +1,23 @@
+class Solution {
+public:
+       void Fault(TreeNode* root,TreeNode* &pre,TreeNode* &first,TreeNode* &second){
+        if(!root) return;
+        Fault(root->left,pre,first,second);
+            if(pre && pre->val>root->val)
+            {
+                if(!first) first=pre;
+                second=root;
+                
+            }
+            
+            pre=root;
+        Fault(root->right,pre,first,second);
+    }
+    void recoverTree(TreeNode* root) 
+    {
+        TreeNode *first = NULL, *second = NULL, *pre = NULL;
+        Fault(root, pre, first, second);
+        if(first) swap(first->val, second->val);
+    }
+
+};
