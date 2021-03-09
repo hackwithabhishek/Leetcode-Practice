@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int Fheight(TreeNode* root){
+        queue<TreeNode*> q;
+        if(!root) return 0;
+        q.push(root);
+        int count=0;
+        while(!q.empty()){
+            int s=q.size();
+            for(int i=0;i<s;i++){
+                TreeNode* p=q.front();
+                q.pop();
+                if(p->left) q.push(p->left);
+                if(p->right) q.push(p->right);
+            }
+            count++;
+        }
+        return count;
+    }
+    bool isBalanced(TreeNode* root) {
+        if(!root) return true;
+        int k=Fheight(root->right)-Fheight(root->left);
+        if(k>1 or k<-1) return false;
+        bool l=isBalanced(root->left);
+        bool r=isBalanced(root->right);
+        
+        return l and r;
+        
+    }
+};
