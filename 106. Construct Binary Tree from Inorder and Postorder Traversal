@@ -1,0 +1,22 @@
+public:
+    TreeNode* Build(vector<int>& inor,vector<int> post,int start,int end,int &postidx){
+        if(start>end){ TreeNode* k=NULL;return k;}
+        TreeNode* root=new TreeNode(post[postidx]); postidx--;
+        int pos;
+        for(int i=start;i<=end;i++){
+            if(root->val==inor[i]){
+                pos=i;
+                break;
+            } 
+        }
+            root->right=Build(inor,post,pos+1,end,postidx);
+            root->left=Build(inor,post,start,pos-1,postidx);
+            return root;
+
+        
+    }
+    TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
+        int postidx=postorder.size()-1;
+        return Build(inorder,postorder,0,postidx,postidx);
+    }
+};
