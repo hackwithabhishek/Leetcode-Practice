@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int solution(ListNode* &head,ListNode* pre,int n,int &k){
+        if(!head) return 0;
+        if(head->next==NULL && n==1 && k==0){
+            head=NULL;
+            return 0;
+        }
+        else{
+            k=1;
+        }
+        int s=1+solution(head->next,head,n,k);
+        if(s==(n)){
+            cout<<"n";
+            cout<<endl<<head->val<<" "<<pre->val;
+            pre->next=head->next;
+        }
+        if(s==n && head==pre){
+            head=head->next;
+        }
+        return s;
+    }
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        int k=0;
+        solution(head,head,n,k);
+        return head;
+    }
+};
