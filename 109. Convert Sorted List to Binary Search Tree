@@ -1,0 +1,26 @@
+class Solution {
+public:
+    TreeNode* BuildBST(ListNode* head){
+        if(!head) return NULL;
+        if(!head->next) 
+        {
+            TreeNode* p=new TreeNode(head->val);
+            return p;
+        }
+        ListNode *pre=NULL,*sp=head,*fp=head;
+        while(fp!=NULL && fp->next!=NULL){
+            fp=fp->next->next;
+            pre=sp;
+            sp=sp->next;               
+        }
+        cout<<sp->val<<endl;
+        TreeNode* node=new TreeNode(sp->val);
+        pre->next=NULL;
+        node->left=BuildBST(head);
+        node->right=BuildBST(sp->next);
+        return node;
+    }
+    TreeNode* sortedListToBST(ListNode* head) {
+        return BuildBST(head);
+    }
+};
