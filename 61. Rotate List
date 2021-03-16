@@ -1,0 +1,40 @@
+class Solution {
+public:
+    ListNode* ans;
+    int Solutionk(ListNode* &head,ListNode* pre,int k){
+        if(!head) return 0;
+        int s=1+Solutionk(head->next,pre, k);
+        if(s==k){
+            ans=head;
+            ListNode* c=pre;
+             while(head->next!=NULL){
+              //   cout<<head->val<<endl;
+                head=head->next;
+            }
+            head->next=pre;
+            while(c->next!=head){
+              //  cout<<c->val<<endl;
+                c=c->next;
+            }
+            c->next=NULL;   
+            
+        }
+        return s;
+    }
+    ListNode* rotateRight(ListNode* head, int k) {
+        if(head==NULL or head->next==NULL or k==0) return head;
+        ListNode *p=head;
+        int count=0;
+        while(p!=NULL){
+            count++;
+            p=p->next;
+        }
+        if(count==k) return head;
+        if(count<k){
+            k=k%count;
+        }
+        if(k==0) return head;
+        Solutionk(head,head,k);
+        return ans;
+    }
+};
