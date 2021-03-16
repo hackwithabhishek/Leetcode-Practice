@@ -1,0 +1,19 @@
+class Solution {
+public:
+    ListNode* s;
+    bool k=true;
+    bool ispal(ListNode* head){
+        if(!head) return true;
+        k=k and ispal(head->next);
+        if(head->val!=s->val)
+        {
+            return false;
+        }
+        s=s->next;
+        return k;
+    }
+    bool isPalindrome(ListNode* head) {
+        s=head;
+        return ispal(head);        
+    }
+};
