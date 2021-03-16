@@ -1,0 +1,13 @@
+#include<bits/stdc++.h>
+
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        int s=nums.size();
+        k=k%s;
+        if(k!=0){
+            reverse(nums.begin(),nums.end());
+            reverse(nums.begin(),nums.end()-(s-k));
+            reverse(nums.begin()+k,nums.end());}
+    }
+};
