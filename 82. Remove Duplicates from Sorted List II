@@ -1,0 +1,32 @@
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+   if(!head) return head;
+     map<int,int> m;
+     ListNode *k=head,*pre=NULL,*ans=NULL;
+     while(k!=NULL){
+         m[k->val]=m[k->val]+1;
+         k=k->next;
+     }
+     while(head!=NULL)
+     {
+         cout<<m[head->val]<<endl;
+         if(m[head->val]<=1)
+         {
+             if(!pre)
+             {
+                 pre=head;
+                 ans=pre;
+             }
+             else
+             {
+                 pre->next=head;
+                 pre=pre->next;
+             }
+         }
+          head=head->next;
+     }
+     if(pre) pre->next=NULL;
+         return ans;
+     }
+};
