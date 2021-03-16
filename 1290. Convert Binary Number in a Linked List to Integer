@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int getDecimalValuek(ListNode* head,int &k){
+        if(!head) return 0;
+        int ans=getDecimalValuek(head->next,k);
+        if(head->val==1){
+            ans=ans+pow(2,k);
+        }
+        k++;
+        return ans;
+        
+    }
+    int getDecimalValue(ListNode* head) {
+        if(!head) return 0;
+        if(!head->next) return head->val;
+        int k=0;
+        return getDecimalValuek(head,k);
+    }
+};
